@@ -28,15 +28,19 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			menuStrip1 = new MenuStrip();
 			fileMenu = new ToolStripMenuItem();
 			loadMenu = new ToolStripMenuItem();
 			saveMenu = new ToolStripMenuItem();
 			saveJohnMenu = new ToolStripMenuItem();
 			saveRetroArchMenu = new ToolStripMenuItem();
+			savePpssppMenu = new ToolStripMenuItem();
+			saveDraSticMenu = new ToolStripMenuItem();
 			quitMenu = new ToolStripMenuItem();
 			toolMenu = new ToolStripMenuItem();
 			calcFormMenu = new ToolStripMenuItem();
+			pspIdTitleFormMenu = new ToolStripMenuItem();
 			ccList1 = new CCList();
 			btnAdd = new Button();
 			btnDell = new Button();
@@ -55,6 +59,7 @@
 			menuStrip1.AutoSize = false;
 			menuStrip1.BackColor = SystemColors.Control;
 			menuStrip1.Dock = DockStyle.None;
+			menuStrip1.Font = new Font("ＭＳ ゴシック", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			menuStrip1.Items.AddRange(new ToolStripItem[] { fileMenu, toolMenu });
 			menuStrip1.Location = new Point(0, 22);
 			menuStrip1.Name = "menuStrip1";
@@ -65,58 +70,87 @@
 			// fileMenu
 			// 
 			fileMenu.BackColor = SystemColors.Control;
-			fileMenu.DropDownItems.AddRange(new ToolStripItem[] { loadMenu, saveMenu, saveJohnMenu, saveRetroArchMenu, quitMenu });
+			fileMenu.DropDownItems.AddRange(new ToolStripItem[] { loadMenu, saveMenu, saveJohnMenu, saveRetroArchMenu, savePpssppMenu, saveDraSticMenu, quitMenu });
+			fileMenu.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			fileMenu.ForeColor = SystemColors.ControlText;
 			fileMenu.Name = "fileMenu";
-			fileMenu.Size = new Size(37, 20);
+			fileMenu.Size = new Size(47, 20);
 			fileMenu.Text = "File";
 			// 
 			// loadMenu
 			// 
+			loadMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			loadMenu.Name = "loadMenu";
 			loadMenu.ShortcutKeys = Keys.Control | Keys.O;
-			loadMenu.Size = new Size(191, 22);
+			loadMenu.Size = new Size(204, 22);
 			loadMenu.Text = "Load";
 			// 
 			// saveMenu
 			// 
+			saveMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			saveMenu.Name = "saveMenu";
 			saveMenu.ShortcutKeys = Keys.Control | Keys.S;
-			saveMenu.Size = new Size(191, 22);
+			saveMenu.Size = new Size(204, 22);
 			saveMenu.Text = "Save";
 			// 
 			// saveJohnMenu
 			// 
+			saveJohnMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			saveJohnMenu.Name = "saveJohnMenu";
 			saveJohnMenu.ShortcutKeys = Keys.Control | Keys.J;
-			saveJohnMenu.Size = new Size(191, 22);
+			saveJohnMenu.Size = new Size(204, 22);
 			saveJohnMenu.Text = "SaveJohn";
 			// 
 			// saveRetroArchMenu
 			// 
+			saveRetroArchMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			saveRetroArchMenu.Name = "saveRetroArchMenu";
 			saveRetroArchMenu.ShortcutKeys = Keys.Control | Keys.R;
-			saveRetroArchMenu.Size = new Size(191, 22);
+			saveRetroArchMenu.Size = new Size(204, 22);
 			saveRetroArchMenu.Text = "SaveRetroArch";
+			// 
+			// savePpssppMenu
+			// 
+			savePpssppMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			savePpssppMenu.Name = "savePpssppMenu";
+			savePpssppMenu.Size = new Size(204, 22);
+			savePpssppMenu.Text = "SavePpsspp";
+			// 
+			// saveDraSticMenu
+			// 
+			saveDraSticMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			saveDraSticMenu.Name = "saveDraSticMenu";
+			saveDraSticMenu.Size = new Size(204, 22);
+			saveDraSticMenu.Text = "SaveDraStic";
 			// 
 			// quitMenu
 			// 
+			quitMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			quitMenu.Name = "quitMenu";
-			quitMenu.Size = new Size(191, 22);
+			quitMenu.Size = new Size(204, 22);
 			quitMenu.Text = "Quit";
 			// 
 			// toolMenu
 			// 
-			toolMenu.DropDownItems.AddRange(new ToolStripItem[] { calcFormMenu });
+			toolMenu.DropDownItems.AddRange(new ToolStripItem[] { calcFormMenu, pspIdTitleFormMenu });
+			toolMenu.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			toolMenu.Name = "toolMenu";
-			toolMenu.Size = new Size(41, 20);
+			toolMenu.Size = new Size(47, 20);
 			toolMenu.Text = "Tool";
 			// 
 			// calcFormMenu
 			// 
+			calcFormMenu.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			calcFormMenu.Name = "calcFormMenu";
-			calcFormMenu.Size = new Size(180, 22);
+			calcFormMenu.Size = new Size(172, 22);
 			calcFormMenu.Text = "CalcForm";
+			// 
+			// pspIdTitleFormMenu
+			// 
+			pspIdTitleFormMenu.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			pspIdTitleFormMenu.Name = "pspIdTitleFormMenu";
+			pspIdTitleFormMenu.Size = new Size(172, 22);
+			pspIdTitleFormMenu.Text = "PspIdTitleForm";
 			// 
 			// ccList1
 			// 
@@ -128,10 +162,11 @@
 			ccList1.btnUp = btnUp;
 			ccList1.btnUpdate = btnUpdate;
 			ccList1.cbEnabled = cbEnabled;
+			ccList1.Font = new Font("ＭＳ ゴシック", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			ccList1.ForeColor = Color.FromArgb(230, 230, 230);
 			ccList1.FormattingEnabled = true;
 			ccList1.IntegralHeight = false;
-			ccList1.ItemHeight = 15;
+			ccList1.ItemHeight = 19;
 			ccList1.Location = new Point(12, 95);
 			ccList1.Name = "ccList1";
 			ccList1.Size = new Size(249, 122);
@@ -142,6 +177,7 @@
 			// btnAdd
 			// 
 			btnAdd.FlatStyle = FlatStyle.Flat;
+			btnAdd.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			btnAdd.Location = new Point(267, 67);
 			btnAdd.Name = "btnAdd";
 			btnAdd.Size = new Size(70, 23);
@@ -152,6 +188,7 @@
 			// btnDell
 			// 
 			btnDell.FlatStyle = FlatStyle.Flat;
+			btnDell.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			btnDell.Location = new Point(12, 65);
 			btnDell.Name = "btnDell";
 			btnDell.Size = new Size(70, 23);
@@ -162,6 +199,7 @@
 			// btnDown
 			// 
 			btnDown.FlatStyle = FlatStyle.Flat;
+			btnDown.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			btnDown.Location = new Point(164, 66);
 			btnDown.Name = "btnDown";
 			btnDown.Size = new Size(70, 23);
@@ -172,6 +210,7 @@
 			// btnUp
 			// 
 			btnUp.FlatStyle = FlatStyle.Flat;
+			btnUp.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			btnUp.Location = new Point(88, 67);
 			btnUp.Name = "btnUp";
 			btnUp.Size = new Size(70, 23);
@@ -182,6 +221,7 @@
 			// btnUpdate
 			// 
 			btnUpdate.FlatStyle = FlatStyle.Flat;
+			btnUpdate.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			btnUpdate.Location = new Point(343, 67);
 			btnUpdate.Name = "btnUpdate";
 			btnUpdate.Size = new Size(70, 23);
@@ -192,9 +232,10 @@
 			// cbEnabled
 			// 
 			cbEnabled.AutoSize = true;
+			cbEnabled.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			cbEnabled.Location = new Point(429, 70);
 			cbEnabled.Name = "cbEnabled";
-			cbEnabled.Size = new Size(68, 19);
+			cbEnabled.Size = new Size(75, 17);
 			cbEnabled.TabIndex = 5;
 			cbEnabled.Text = "Enabled";
 			cbEnabled.UseVisualStyleBackColor = true;
@@ -203,7 +244,7 @@
 			// 
 			tbCode.BackColor = Color.FromArgb(64, 64, 64);
 			tbCode.BorderStyle = BorderStyle.FixedSingle;
-			tbCode.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			tbCode.Font = new Font("ＭＳ ゴシック", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			tbCode.ForeColor = Color.FromArgb(230, 230, 230);
 			tbCode.Location = new Point(267, 130);
 			tbCode.Multiline = true;
@@ -216,11 +257,11 @@
 			// 
 			tbDesc.BackColor = Color.FromArgb(64, 64, 64);
 			tbDesc.BorderStyle = BorderStyle.FixedSingle;
-			tbDesc.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			tbDesc.Font = new Font("ＭＳ ゴシック", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
 			tbDesc.ForeColor = Color.FromArgb(230, 230, 230);
 			tbDesc.Location = new Point(267, 95);
 			tbDesc.Name = "tbDesc";
-			tbDesc.Size = new Size(230, 29);
+			tbDesc.Size = new Size(230, 26);
 			tbDesc.TabIndex = 3;
 			// 
 			// MainForm
@@ -240,6 +281,7 @@
 			Controls.Add(tbDesc);
 			Controls.Add(ccList1);
 			Controls.Add(menuStrip1);
+			Icon = (Icon)resources.GetObject("$this.Icon");
 			MainMenuStrip = menuStrip1;
 			MinimumSize = new Size(510, 220);
 			Name = "MainForm";
@@ -269,5 +311,8 @@
 		private ToolStripMenuItem saveMenu;
 		private ToolStripMenuItem saveJohnMenu;
 		private ToolStripMenuItem saveRetroArchMenu;
+		private ToolStripMenuItem savePpssppMenu;
+		private ToolStripMenuItem pspIdTitleFormMenu;
+		private ToolStripMenuItem saveDraSticMenu;
 	}
 }

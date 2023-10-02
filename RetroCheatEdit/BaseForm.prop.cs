@@ -9,7 +9,7 @@ namespace RetroCheatEdit
 {
 	partial class BaseForm
 	{
-		[Category("Hypowered"), Browsable(false)]
+		[Category("Hypowered"), Browsable(true)]
 		public new System.Windows.Forms.IButtonControl AcceptButton
 		{
 			get { return base.AcceptButton; }
@@ -69,7 +69,7 @@ namespace RetroCheatEdit
 			get { return base.FormBorderStyle; }
 			set { base.FormBorderStyle = value; }
 		}
-		[Category("Hypowered"), Browsable(false)]
+		[Category("Hypowered"), Browsable(true)]
 		public new System.Windows.Forms.IButtonControl CancelButton
 		{
 			get { return base.CancelButton; }
@@ -105,7 +105,7 @@ namespace RetroCheatEdit
 			get { return base.HelpButton; }
 			set { base.HelpButton = value; }
 		}
-		[Category("Hypowered"), Browsable(false)]
+		[Category("Hypowered"), Browsable(true)]
 		public new System.Drawing.Icon Icon
 		{
 			get { return base.Icon; }

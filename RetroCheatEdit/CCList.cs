@@ -17,6 +17,24 @@ namespace RetroCheatEdit
 		private string m_FileName = "";
 		public string FileName { get { return m_FileName; } }
 		private bool RefFlag = false;
+		private string m_psp_id = "";
+		public string psp_id { get { return m_psp_id; } } 
+		private string m_psp_title = "";
+		public string psp_title { get { return m_psp_title; } }
+		public string psp_cap
+		{
+			get
+			{
+				if (m_CfType==CheatFileType.ppsspp)
+				{
+					return m_psp_id + " / " + m_psp_title;
+				}
+				else
+				{
+					return "";
+				}
+			}
+		}
 		private CheatFileType m_CfType = CheatFileType.None;
 		public CheatFileType CfType { get { return m_CfType; } }
 
@@ -126,6 +144,31 @@ namespace RetroCheatEdit
 				}
 			}
 		}
+
+		public string Title
+		{
+			get
+			{
+				string ret = "";
+				switch(m_CfType)
+				{
+					case CheatFileType.John:
+						ret += "[John Emu] ";
+						break;
+					case CheatFileType.RetroArch:
+						ret += "[RetroArch] ";
+						break;
+					case CheatFileType.ppsspp:
+						ret += "[ppsspp] ";
+						break;
+					case CheatFileType.DraStic:
+						ret += "[DraStic] ";
+						break;
+				}
+				ret += $"{Path.GetFileName(m_FileName)} : {m_psp_id}/{m_psp_title}";
+				return ret;
+			}
+		}
 		private List<CheatCode> m_Items = new List<CheatCode>();
 		public CCList()
 		{
@@ -135,7 +178,8 @@ namespace RetroCheatEdit
 		{
 			this.Items.Clear();
 			m_Items.Clear();
-
+			m_psp_id = "";
+			m_psp_title = "";
 		}
 		public void Remove(int idx)
 		{
@@ -260,6 +304,46 @@ namespace RetroCheatEdit
 			DispTextBox();
 		}
 
+		public CheatFileType TypeOfCFT(string s)
+		{
+			s = s.Trim();
+			if( s=="") return CheatFileType.None;
+			//john
+			int idx = s.IndexOf("<?xml version='1.0' encoding='UTF-8' ?>");
+			if (idx== 0) 
+			{
+				return CheatFileType.John;
+			}
+			// RetroArch
+			idx = s.IndexOf("cheat");
+			if(idx== 0)
+			{
+				return CheatFileType.RetroArch;
+			}
+			idx = s.IndexOf("_S ");
+			if (idx == 0)
+			{
+				return CheatFileType.ppsspp;
+			}
+			idx = s.IndexOf("_S "); // spaceわすれずに
+			if (idx == 0)
+			{
+				return CheatFileType.ppsspp;
+			}
+			idx = s.IndexOf("\n");
+			if (idx >= 0)
+			{
+				string ss = s.Substring(0, idx).Trim();
+				string sss = "";
+				bool b = false;
+				if (IsDraSticH(ss,out sss,out b))
+				{
+					return CheatFileType.DraStic;
+				}
+			}
+			return CheatFileType.None;	
+		}
+		// *****************************************************************
 		public bool Load(string p)
 		{
 			bool ret = false;
@@ -269,17 +353,22 @@ namespace RetroCheatEdit
 			{
 				string s = File.ReadAllText(p);
 				Clear();
-				if (s != "")
+				CheatFileType cf = TypeOfCFT(s);
+
+				switch(cf)
 				{
-					int idx = s.IndexOf("<?xml version='1.0' encoding='UTF-8' ?>");
-					if (idx >= 0)
-					{
+					case CheatFileType.John:
 						ret = FromJoneCht(s);
-					}
-					else
-					{
+						break;
+					case CheatFileType.RetroArch:
 						ret = FromRetroArch(s);
-					}
+						break;
+					case CheatFileType.ppsspp:
+						ret = FromPpsspp(s);
+						break;
+					case CheatFileType.DraStic:
+						ret = FromDraStic(s);
+						break;
 				}
 			}
 			catch
@@ -294,6 +383,7 @@ namespace RetroCheatEdit
 			return ret;
 
 		}
+		// *****************************************************************
 		public bool FromJoneCht(string s)
 		{
 			bool ret = false;
@@ -336,7 +426,6 @@ namespace RetroCheatEdit
 			}
 			return ret;
 		}
-
 		private string[] SplitRetroA(string s)
 		{
 			string[] ret = new string[3];
@@ -365,7 +454,6 @@ namespace RetroCheatEdit
 		public bool FromRetroArch(string s)
 		{
 			bool ret = false;
-			Clear();
 			if (s == "") return ret;
 
 			string[] sa = s.Split("\n");
@@ -428,7 +516,125 @@ namespace RetroCheatEdit
 			}
 			return ret;
 		}
+		public bool FromPpsspp(string s)
+		{
+			bool ret = false;
+			try
+			{
+				string[] sa = s.Split('\n');
+				List<CheatCode> ccs = new List<CheatCode>();
+				string Head_S = "";
+				string Head_G = "";
+				if (sa.Length > 0)
+				{
+					CheatCode? cc = null;
+					foreach (string line in sa )
+					{
+						string line2 = line.Trim();
+						if (line2 == "") continue;
+						int idx = line2.IndexOf(" ");
+						string tag = line2.Substring(0, idx).Trim();
+						string Node = line2.Substring(idx+1).Trim();
 
+						if ((tag=="_S")&&(Head_S==""))
+						{
+							Head_S = Node;
+						}else if ((tag == "_G") && (Head_G == ""))
+						{
+							Head_G = Node;
+						}else if (tag == "_C0")
+						{
+							if (cc!= null) ccs.Add(cc);
+							cc = new CheatCode(Node);
+						}else if (tag == "_L")
+						{
+							if (cc != null)
+							{
+								cc.AddCode(Node);
+							}
+						}
+					}
+					if (cc != null) ccs.Add(cc);
+				}
+				string[] descs = new string[ccs.Count];
+				for(int i=0; i<ccs.Count; i++) { descs[i] = ccs[i].Desc;}
+				this.Items.AddRange(descs);
+				m_Items.AddRange(ccs);
+				m_psp_id = Head_S;
+				m_psp_title = Head_G;
+				m_CfType = CheatFileType.ppsspp;
+				ret = true;
+			}
+			catch
+			{
+				ret = false;
+			}
+			return ret;
+		}
+		private bool IsDraSticH(string s,out string d,out bool enable)
+		{
+			bool ret = false;
+			s = s.Trim();
+			d = "";
+			enable = false;
+			if (s.Length<2) return ret;
+
+			if (s[s.Length-1]=='+')
+			{
+				enable = true;
+				s = s.Substring(0,s.Length-1).Trim();
+			}
+			if (s.Length < 2) return ret;
+			if ((s[0] == '[') && (s[s.Length - 1] == ']'))
+			{
+				d = s.Substring(1,s.Length-2);
+				ret = true;
+			}
+			return ret;
+		}
+		public bool FromDraStic(string s)
+		{
+			bool ret = false;
+			try
+			{
+				string[] sa = s.Split('\n');
+				List<CheatCode> ccs = new List<CheatCode>();
+				if (sa.Length > 0)
+				{
+					CheatCode? cc = null;
+					foreach (string line in sa)
+					{
+						string line2 = line.Trim();
+						string h = "";
+						bool enable = false;
+						if (IsDraSticH(line2,out h,out enable))
+						{
+							if (cc!=null) ccs.Add(cc);
+							cc = new CheatCode(h);
+							cc.SetEnabled(enable);
+						}
+						else if (line2 !="")
+						{
+							if(cc!=null)
+								cc.AddCode(line2);
+						}
+					}
+					if (cc != null) ccs.Add(cc);
+				}
+				string[] descs = new string[ccs.Count];
+				for (int i = 0; i < ccs.Count; i++) { descs[i] = ccs[i].Desc; }
+				this.Items.AddRange(descs);
+				m_Items.AddRange(ccs);
+				m_CfType = CheatFileType.DraStic;
+				ret = true;
+			}
+			catch
+			{
+				ret = false;
+			}
+			return ret;
+		}
+		// *****************************************************************
 		public bool Save(string p)
 		{
 			switch (m_CfType)
@@ -441,6 +647,7 @@ namespace RetroCheatEdit
 					return false;
 			}
 		}
+		// *****************************************************************
 		public bool SaveJohn(string p)
 		{
 			bool ret = false;
@@ -470,6 +677,7 @@ namespace RetroCheatEdit
 			if (ret) { m_FileName = p; }
 			return ret;
 		}
+		// *****************************************************************
 		public bool SaveRetroArch(string p)
 		{
 			bool ret = false;
@@ -501,6 +709,70 @@ namespace RetroCheatEdit
 			if (ret) { m_FileName = p; }
 			return ret;
 		}
+		// *****************************************************************
+		public bool SavePpsspp(string p)
+		{
+			bool ret = false;
+			if ((m_psp_id == "") || (m_psp_title == "")) return ret;
+			string data = "";
+			data += $"_S {m_psp_id}\r\n";
+			data += $"_G {m_psp_title}\r\n";
+			if (m_Items.Count>0)
+			{
+				foreach(CheatCode item in m_Items)
+				{
+					data += item.PpssppCode();
+				}
+			}
+			try
+			{
+				if (File.Exists(p)) { File.Delete(p); }
+				File.WriteAllText(p, data);
+				ret = File.Exists(p);
+				m_CfType = CheatFileType.ppsspp;
+			}
+			catch
+			{
+				m_CfType = CheatFileType.None;
+				ret = false;
+			}
+			if (ret) 
+			{ 
+				m_FileName = p; 
+			}
+			return ret;
+		}
+		// *****************************************************************
+		public bool SaveDrasTic(string p)
+		{
+			bool ret = false;
+			string data = "";
+			if (m_Items.Count > 0)
+			{
+				foreach (CheatCode item in m_Items)
+				{
+					data += item.DraSticCode();
+				}
+			}
+			try
+			{
+				if (File.Exists(p)) { File.Delete(p); }
+				File.WriteAllText(p, data);
+				ret = File.Exists(p);
+				m_CfType = CheatFileType.DraStic;
+			}
+			catch
+			{
+				m_CfType = CheatFileType.None;
+				ret = false;
+			}
+			if (ret)
+			{
+				m_FileName = p;
+			}
+			return ret;
+		}
+		// *****************************************************************
 		public void DeleteItem()
 		{
 			if (this.SelectedIndex < 0) return;
@@ -570,12 +842,29 @@ namespace RetroCheatEdit
 			this.Items[si] = desc;
 			RefFlag = false;
 		}
+		// *****************************************************************
+		public void EditPspIsTitle()
+		{
+			using (PpssppForm dlg = new PpssppForm())
+			{
+				dlg.PSP_ID = m_psp_id;
+				dlg.PSP_Title = m_psp_title;
+				if (dlg.ShowDialog()== DialogResult.OK)
+				{
+					m_psp_id = dlg.PSP_ID;
+					m_psp_title = dlg.PSP_Title;
+				}
+			}
+		}
+		// *****************************************************************
 
 	}
 	public enum CheatFileType
 	{
 		None =0,
 		John,
-		RetroArch
+		RetroArch,
+		ppsspp,
+		DraStic
 	}
 }

@@ -40,6 +40,13 @@ namespace RetroCheatEdit
 			saveMenu.Click += (sender, e) => { SaveChtFile(); };
 			saveJohnMenu.Click += (sender, e) => { SaveJohnFile(); };
 			saveRetroArchMenu.Click += (sender, e) => { SaveRetroArchFile(); };
+			savePpssppMenu.Click += (sender, e) => { SavePpssppFile(); };
+			saveDraSticMenu.Click += (sender, e) => { SaveDraSticFile(); };
+			pspIdTitleFormMenu.Click += (sender, e) =>
+			{
+				ccList1.EditPspIsTitle();
+				this.Text = ccList1.Title;
+			};
 			Command(Environment.GetCommandLineArgs().Skip(1).ToArray(), PIPECALL.StartupExec);
 		}
 		// **********************************************************
@@ -70,7 +77,12 @@ namespace RetroCheatEdit
 				{
 					if (ccList1.Load(arg))
 					{
+						this.Text = ccList1.Title;
 						return;
+					}
+					else
+					{
+						this.Text = "PetroCheatEdit";
 					}
 				}
 			}
@@ -146,83 +158,211 @@ namespace RetroCheatEdit
 		public bool LoadChtFile()
 		{
 			bool ret = false;
-			OpenFileDialog dlg = new OpenFileDialog();
-			if (ccList1.FileName != "")
+			using (OpenFileDialog dlg = new OpenFileDialog())
 			{
-				dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
-				dlg.FileName = Path.GetFileName(ccList1.FileName);
-			}
-			dlg.Filter = "*.cht|*.cht|*.*|*.*";
+				if (ccList1.FileName != "")
+				{
+					dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
+					dlg.FileName = Path.GetFileName(ccList1.FileName);
+				}
+				dlg.Filter = "*.cht|*.cht|*.ini|*.ini|*.*|*.*";
 
-			if (dlg.ShowDialog() == DialogResult.OK)
-			{
-				ret = ccList1.Load(dlg.FileName);
+				if (dlg.ShowDialog() == DialogResult.OK)
+				{
+					ret = ccList1.Load(dlg.FileName);
+					if (ret)
+					{
+						this.Text = ccList1.Title;
+					}
+					else
+					{
+						this.Text = "RetroCheatEdit";
+					}
+				}
 			}
 			return ret;
 		}
 		public bool SaveChtFile()
 		{
 			bool ret = false;
-			if (ccList1.CfType== CheatFileType.None) return ret;
-			SaveFileDialog dlg = new SaveFileDialog();
+			if (ccList1.CfType == CheatFileType.None) return ret;
+			using (SaveFileDialog dlg = new SaveFileDialog())
+			{
+				if (ccList1.CfType == CheatFileType.John)
+				{
+					dlg.Title = "Export John Emulator cheat File";
+					dlg.DefaultExt = ".cht";
+				}
+				else if (ccList1.CfType == CheatFileType.RetroArch)
+				{
+					dlg.Title = "Export Retroarch cheat File";
+					dlg.DefaultExt = ".cht";
+				}
+				else if (ccList1.CfType == CheatFileType.ppsspp)
+				{
+					dlg.Title = "Export ppsspp cheat File";
+					dlg.DefaultExt = ".ini";
+				}
+				else if (ccList1.CfType == CheatFileType.DraStic)
+				{
+					dlg.Title = "Export DraStic cheat File";
+					dlg.DefaultExt = ".cht";
+				}
 
-			if (ccList1.CfType== CheatFileType.John)
-			{
-				dlg.Title = "Export John Emulator cheat File";
-			}else if (ccList1.CfType == CheatFileType.RetroArch)
-			{
-				dlg.Title = "Export Retroarch cheat File";
-			}
+				if (ccList1.FileName != "")
+				{
+					dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
+					if (ccList1.CfType == CheatFileType.ppsspp)
+					{
+						dlg.FileName = Path.ChangeExtension(
+							Path.GetFileName(ccList1.FileName),
+							".ini");
+					}
+					else
+					{
+						dlg.FileName = Path.ChangeExtension(
+							Path.GetFileName(ccList1.FileName),
+							".cht");
+					}
+				}
+				dlg.Filter = "*.cht|*.cht|*.ini|*.ini|*.*|*.*";
 
-			if (ccList1.FileName != "")
-			{
-				dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
-				dlg.FileName = Path.GetFileName(ccList1.FileName);
-			}
-			dlg.Filter = "*.cht|*.cht|*.*|*.*";
-			dlg.DefaultExt = ".cht";
-
-			if (dlg.ShowDialog() == DialogResult.OK)
-			{
-				ret = ccList1.Save(dlg.FileName);
+				if (dlg.ShowDialog() == DialogResult.OK)
+				{
+					ret = ccList1.Save(dlg.FileName);
+					if (ret)
+					{
+						this.Text = ccList1.Title;
+					}
+					else
+					{
+						this.Text = "RetroCheatEdit";
+					}
+				}
 			}
 			return ret;
 		}
 		public bool SaveJohnFile()
 		{
 			bool ret = false;
-			SaveFileDialog dlg = new SaveFileDialog();
-			if (ccList1.FileName != "")
+			using (SaveFileDialog dlg = new SaveFileDialog())
 			{
-				dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
-				dlg.FileName = Path.GetFileName(ccList1.FileName);
-			}
-			dlg.Title = "Export John Emulator cheat File";
-			dlg.Filter = "*.cht|*.cht|*.*|*.*";
-			dlg.DefaultExt = ".cht";
+				if (ccList1.FileName != "")
+				{
+					dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
+					dlg.FileName = Path.ChangeExtension(
+						Path.GetFileName(ccList1.FileName),
+						".cht");
+				}
+				dlg.Title = "Export John Emulator cheat File";
+				dlg.Filter = "*.cht|*.cht|*.*|*.*";
+				dlg.DefaultExt = ".cht";
 
-			if (dlg.ShowDialog() == DialogResult.OK)
-			{
-				ret = ccList1.SaveJohn(dlg.FileName);
+				if (dlg.ShowDialog() == DialogResult.OK)
+				{
+					ret = ccList1.SaveJohn(dlg.FileName);
+					if (ret)
+					{
+						this.Text = ccList1.Title;
+					}
+					else
+					{
+						this.Text = "RetroCheatEdit";
+					}
+				}
 			}
 			return ret;
 		}
 		public bool SaveRetroArchFile()
 		{
 			bool ret = false;
-			SaveFileDialog dlg = new SaveFileDialog();
-			if (ccList1.FileName != "")
+			using (SaveFileDialog dlg = new SaveFileDialog())
 			{
-				dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
-				dlg.FileName = Path.GetFileName(ccList1.FileName);
-			}
-			dlg.Title = "Export Retroarch cheat File";
-			dlg.DefaultExt = ".cht";
-			dlg.Filter = "*.cht|*.cht|*.*|*.*";
+				if (ccList1.FileName != "")
+				{
+					dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
+					dlg.FileName = Path.ChangeExtension(
+						Path.GetFileName(ccList1.FileName),
+						".cht");
+				}
+				dlg.Title = "Export Retroarch cheat File";
+				dlg.DefaultExt = ".cht";
+				dlg.Filter = "*.cht|*.cht|*.*|*.*";
 
-			if (dlg.ShowDialog() == DialogResult.OK)
+				if (dlg.ShowDialog() == DialogResult.OK)
+				{
+					ret = ccList1.SaveRetroArch(dlg.FileName);
+					if (ret)
+					{
+						this.Text = ccList1.Title;
+					}
+					else
+					{
+						this.Text = "RetroCheatEdit";
+					}
+				}
+			}
+			return ret;
+		}
+		public bool SavePpssppFile()
+		{
+			bool ret = false;
+			using (SaveFileDialog dlg = new SaveFileDialog())
 			{
-				ret = ccList1.SaveRetroArch(dlg.FileName);
+				if (ccList1.FileName != "")
+				{
+					dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
+					dlg.FileName = Path.ChangeExtension(
+						Path.GetFileName(ccList1.FileName),
+						".ini");
+				}
+				dlg.Title = "Export Retroarch cheat File";
+				dlg.DefaultExt = ".ini";
+				dlg.Filter = "*.ini|*.ini|*.*|*.*";
+
+				if (dlg.ShowDialog() == DialogResult.OK)
+				{
+					ret = ccList1.SavePpsspp(dlg.FileName);
+					if (ret)
+					{
+						this.Text = ccList1.Title;
+					}
+					else
+					{
+						this.Text = "RetroCheatEdit";
+					}
+				}
+			}
+			return ret;
+		}
+		public bool SaveDraSticFile()
+		{
+			bool ret = false;
+			using (SaveFileDialog dlg = new SaveFileDialog())
+			{
+				if (ccList1.FileName != "")
+				{
+					dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
+					dlg.FileName = Path.ChangeExtension(
+						Path.GetFileName(ccList1.FileName),
+						".cht");
+				}
+				dlg.Title = "Export DraStic cheat File";
+				dlg.DefaultExt = ".cht";
+				dlg.Filter = "*.cht|*.cht|*.*|*.*";
+
+				if (dlg.ShowDialog() == DialogResult.OK)
+				{
+					ret = ccList1.SaveDrasTic(dlg.FileName);
+					if (ret)
+					{
+						this.Text = ccList1.Title;
+					}
+					else
+					{
+						this.Text = "RetroCheatEdit";
+					}
+				}
 			}
 			return ret;
 		}

@@ -8,6 +8,11 @@ namespace RetroCheatEdit
 {
 	public class CheatCode
 	{
+		public void Clear()
+		{
+			m_desc = "";
+			m_Codes.Clear();
+		}
 		private string m_desc = "";
 		public string Desc { get { return m_desc; } }
 		public void SetDesc (string s) {  m_desc = s; }
@@ -25,6 +30,10 @@ namespace RetroCheatEdit
 					m_Codes.Add(s);
 				}
 			}
+		}
+		public void AddCode(string s)
+		{
+			m_Codes.Add (s);
 		}
 		public string Code
 		{
@@ -149,6 +158,36 @@ namespace RetroCheatEdit
 			return ret;
 		}
 
+		public string PpssppCode()
+		{
+			string ret = "";
+
+			ret += "_C0 " + m_desc + "\r\n";
+			if (m_Codes.Count > 0)
+			{
+				foreach (string s in m_Codes)
+				{
+					ret += "_L " + s + "\r\n";
+				}
+			}
+			return ret;
+		}
+		public string DraSticCode()
+		{
+			string ret = "";
+			string pluss = "";
+			if (m_enabled == true) pluss = "+";
+			ret += $"[{m_desc}]{pluss}\r\n";
+			if (m_Codes.Count>0)
+			{
+                foreach (string c in m_Codes)
+                {
+					ret += $"{c}\r\n";
+                }
+				ret += "\r\n";
+            }
+			return ret;
+		}
 	}
 
 }

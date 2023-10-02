@@ -9,6 +9,11 @@
     <Title>SkeltonDotNet6</Title>
     <Authors>bry-ful</Authors>
     <Company>bry-ful</Company>
+    <ApplicationIcon>appicon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="appicon.ico" />
+  </ItemGroup>
 
 </Project>

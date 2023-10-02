@@ -18,7 +18,10 @@ namespace RetroCheatEdit
 			InitializeComponent();
 
 			btnAdd.Click += (sender, e) => { Calc(); };
+			this.Size = new Size(400, 360);
+
 		}
+		/*
 		private string ChkStr(string s)
 		{
 			string ret = "";
@@ -58,7 +61,7 @@ namespace RetroCheatEdit
 			}
 			textBox1.Lines = ret.ToArray();
 		}
-
+		*/
 		// **************************************************************
 		private int? ToInt(string s)
 		{
@@ -74,6 +77,33 @@ namespace RetroCheatEdit
 			return ret;
 		}
 		// **************************************************************
+		private string[] SplitSpace(string s)
+		{
+			string[] ret = new string[2];
+			ret[0] = ret[1] = "";
+			int idx = s.IndexOf(' ');
+			if (idx < 0)
+			{
+				ret[0] = s.Trim();
+			}
+			else
+			{
+				ret[0] = s.Substring(0, idx).Trim();
+				ret[1] = s.Substring(idx + 1).Trim();
+			}
+			return ret;
+		}
+		// **************************************************************
+		private bool isHexStr(string s)
+		{
+			bool ret = false;
+			if (s.Length > 2)
+			{
+				ret = (s[1] == 'X' || s[1] == 'x');
+			}
+			return ret;
+		}
+		// **************************************************************
 
 		public void Calc()
 		{
@@ -84,16 +114,19 @@ namespace RetroCheatEdit
 			int cnt = lines.Length;
 			for (int i = 0; i < cnt; i++)
 			{
-				int? v = ToInt(lines[i]);
-				if (v != null)
+				string[] lineA = SplitSpace(lines[i]);
+				HexValue hv = new HexValue(lineA[0]);
+				if (hv.Enabled)
 				{
-					v = v + addV;
-					lines[i] = Convert.ToString((int)v, 16).ToUpper();
+					hv.Add((int)addV);
+					lineA[0] = hv.Str;
 				}
+
+				lines[i] = lineA[0] + " " + lineA[1];
 			}
 			textBox2.Lines = lines;
 		}
-		protected override void OnResize(EventArgs e)
+		public void ResizeChk()
 		{
 			if (textBox1 != null)
 			{
@@ -105,8 +138,13 @@ namespace RetroCheatEdit
 				textBox2.Size = new Size(w, h); ;
 				this.Refresh();
 			}
+		}
+		protected override void OnResize(EventArgs e)
+		{
+			ResizeChk();
 			base.OnResize(e);
 
 		}
+
 	}
 }

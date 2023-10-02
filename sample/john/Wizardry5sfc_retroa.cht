@@ -1,0 +1,77 @@
+cheat0_desc = "作成時のパラメータ"
+cheat0_code = "7E009D00+7E009463+7E009563+7E009663+7E009763+7E009863+7E009963+7E009A63+7E009B63+7E009C63"
+cheat0_enable = "false"
+
+cheat1_desc = "移動中魔法減らない"
+cheat1_code = "C4AA4D00"
+cheat1_enable = "false"
+
+cheat2_desc = "戦闘中魔法減らない"
+cheat2_code = "C5B71100"
+cheat2_enable = "false"
+
+cheat3_desc = "Gold"
+cheat3_code = "7E101199+7E101299+7E101399+7E101499+7E101599+7E101699"
+cheat3_enable = "false"
+
+cheat4_desc = "E.P."
+cheat4_code = "7E101799+7E101899+7E101999+7E101A99+7E101B99+7E101C99"
+cheat4_enable = "false"
+
+cheat5_desc = "年齢"
+cheat5_code = "7E102410"
+cheat5_enable = "false"
+
+cheat6_desc = "魔法回数"
+cheat6_code = "7E102799+7E102899+7E102999+7E102A99+7E102B99+7E102C99+7E102D99+7E102E99+7E102F99+7E103099+7E103199+7E103299+7E103399+7E103499"
+cheat6_enable = "false"
+
+cheat7_desc = "魔法覚える"
+cheat7_code = "7E1035FF+7E1036FF+7E1037FF+7E1038FF+7E1039FF+7E103AFF+7E103BFF+7E103CFF+7E103DFF+7E103EFF+7E103FFF+7E1040FF+7E1041FF+7E1042FF"
+cheat7_enable = "false"
+
+cheat8_desc = "Swim(潜る能力)"
+cheat8_code = "7E105A70"
+cheat8_enable = "false"
+
+cheat9_desc = "ミルワ"
+cheat9_code = "7E00C9FF"
+cheat9_enable = "false"
+
+cheat10_desc = "しきべつ"
+cheat10_code = "7E00CCFF"
+cheat10_enable = "false"
+
+cheat11_desc = "ふゆう"
+cheat11_code = "7E00CDFF"
+cheat11_enable = "false"
+
+cheat12_desc = "保護"
+cheat12_code = "7E00CAFF+7E00CB9D"
+cheat12_enable = "false"
+
+cheat13_desc = "ブレス耐え、魔法邪魔する"
+cheat13_code = "7E08B3FF"
+cheat13_enable = "false"
+
+cheat14_desc = "宝箱の罠なし"
+cheat14_code = "7E007200"
+cheat14_enable = "false"
+
+cheat15_desc = "！宿屋で常にレベルアップ"
+cheat15_code = "6D66-672F"
+cheat15_enable = "false"
+
+cheat16_desc = "壁を抜けて歩く"
+cheat16_code = "7E00AE00"
+cheat16_enable = "false"
+
+cheat17_desc = "状態OK"
+cheat17_code = "7E102300+7E10A300+7E112300+7E11A300+7E122300+7E12A300"
+cheat17_enable = "false"
+
+cheat18_desc = "SpellAll"
+cheat18_code = "7E102799+7E102899+7E102999+7E102A99+7E102B99+7E102C99+7E102D99+7E102E99+7E102F99+7E103099+7E103199+7E103299+7E103399+7E103499+7E1035FF+7E1036FF+7E1037FF+7E1038FF+7E1039FF+7E103AFF+7E103BFF+7E103CFF+7E103DFF+7E103EFF+7E103FFF+7E1040FF+7E1041FF+7E1042FF"
+cheat18_enable = "false"
+
+cheats = "19"
