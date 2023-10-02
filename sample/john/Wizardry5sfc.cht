@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<cheats>
+<item disabled="true" code="7E009D00&#10;7E009463&#10;7E009563&#10;7E009663&#10;7E009763&#10;7E009863&#10;7E009963&#10;7E009A63&#10;7E009B63&#10;7E009C63" name="作成時のパラメータ" />
+<item disabled="true" code="C4AA4D00" name="移動中魔法減らない" />
+<item disabled="true" code="C5B71100" name="戦闘中魔法減らない" />
+<item disabled="true" code="7E101199&#10;7E101299&#10;7E101399&#10;7E101499&#10;7E101599&#10;7E101699" name="Gold" />
+<item disabled="true" code="7E101799&#10;7E101899&#10;7E101999&#10;7E101A99&#10;7E101B99&#10;7E101C99" name="E.P." />
+<item disabled="true" code="7E102410" name="年齢" />
+<item disabled="true" code="7E102799&#10;7E102899&#10;7E102999&#10;7E102A99&#10;7E102B99&#10;7E102C99&#10;7E102D99&#10;7E102E99&#10;7E102F99&#10;7E103099&#10;7E103199&#10;7E103299&#10;7E103399&#10;7E103499" name="魔法回数" />
+<item disabled="true" code="7E1035FF&#10;7E1036FF&#10;7E1037FF&#10;7E1038FF&#10;7E1039FF&#10;7E103AFF&#10;7E103BFF&#10;7E103CFF&#10;7E103DFF&#10;7E103EFF&#10;7E103FFF&#10;7E1040FF&#10;7E1041FF&#10;7E1042FF" name="魔法覚える" />
+<item disabled="true" code="7E105A70" name="Swim(潜る能力)" />
+<item disabled="true" code="7E00C9FF" name="ミルワ" />
+<item disabled="true" code="7E00CCFF" name="しきべつ" />
+<item disabled="true" code="7E00CDFF" name="ふゆう" />
+<item disabled="true" code="7E00CAFF&#10;7E00CB9D" name="保護" />
+<item disabled="true" code="7E08B3FF" name="ブレス耐え、魔法邪魔する" />
+<item disabled="true" code="7E007200" name="宝箱の罠なし" />
+<item disabled="true" code="6D66-672F" name="！宿屋で常にレベルアップ" />
+<item disabled="true" code="7E00AE00" name="壁を抜けて歩く" />
+<item disabled="true" code="7E102300&#10;7E10A300&#10;7E112300&#10;7E11A300&#10;7E122300&#10;7E12A300" name="状態OK" />
+<item disabled="true" code="7E102799&#10;7E102899&#10;7E102999&#10;7E102A99&#10;7E102B99&#10;7E102C99&#10;7E102D99&#10;7E102E99&#10;7E102F99&#10;7E103099&#10;7E103199&#10;7E103299&#10;7E103399&#10;7E103499&#10;7E1035FF&#10;7E1036FF&#10;7E1037FF&#10;7E1038FF&#10;7E1039FF&#10;7E103AFF&#10;7E103BFF&#10;7E103CFF&#10;7E103DFF&#10;7E103EFF&#10;7E103FFF&#10;7E1040FF&#10;7E1041FF&#10;7E1042FF" name="SpellAll" />
+</cheats>
+
+

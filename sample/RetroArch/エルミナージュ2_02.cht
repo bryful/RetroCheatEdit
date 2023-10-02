@@ -1,0 +1,45 @@
+cheats = 11
+
+cheat0_desc = "ボーナス99"
+cheat0_code = "0x003A91EC 0x00000063+0x003A91EE 0x00000063"
+cheat0_enable = false
+
+cheat1_desc = "経験値256倍"
+cheat1_code = "0x20001100 0x00052A00+0x20001104 0x0A23995A+0x20001108 0x000537C3+0x200E6560 0x0A200440+0x200E6564 0x8C830058"
+cheat1_enable = false
+
+cheat2_desc = "お金256倍"
+cheat2_code = "0x20001110 0x00052A00+0x20001114 0x0A23993E+0x20001118 0x8C82005C+0x200E64F0 0x0A200444"
+cheat2_enable = false
+
+cheat3_desc = "練度減らない"
+cheat3_code = "0x203A8AA0 0x00630063"
+cheat3_enable = false
+
+cheat4_desc = "フェイム9"
+cheat4_code = "0x003A0850 0x00000009"
+cheat4_enable = false
+
+cheat5_desc = "鑑定済み"
+cheat5_code = "0x200C4BF0 0x34420001+0x200C4BF4 0xA0A20000"
+cheat5_enable = false
+
+cheat6_desc = "宝箱、罠なし"
+cheat6_code = "0x200D6CF8 0x00000000"
+cheat6_enable = false
+
+cheat7_desc = "呪文回数へらない？"
+cheat7_code = "0x200AFBDC 0x00000000+0x200AFC24 0x00000000"
+cheat7_enable = false
+
+cheat8_desc = "レベルアップ時、能力下がらない"
+cheat8_code = "0x200E6840 0x00000000+0x200E6850 0x50000003"
+cheat8_enable = false
+
+cheat9_desc = "商店、1個売ると在庫無限"
+cheat9_code = "0x20051C9C 0x240400FF"
+cheat9_enable = false
+
+cheat10_desc = "全魔法修得、作った順で6人"
+cheat10_code = "0x4038BA9A 0x00060135+0xFFFFFFFF 0x00000000+0x4038BA9E 0x00060135+0xFFFFFFFF 0x00000000+0x4038BAA2 0x00060135+0x00FFFFFF 0x00000000+0x8038BAAA 0x00390002+0x00000009 0x00000000+0x8038BF7E 0x00390002+0x00000009 0x00000000+0x8038C452 0x00390002+0x00000009 0x00000000+0x8038C926 0x00390002+0x00000009 0x00000000+0x8038C452 0x00390002+0x00000009 0x00000000+0x8038CDFA 0x00390002+0x00000009 0x00000000+0x8038D2CE 0x00390002+0x00000009 0x00000000"
+cheat10_enable = false
