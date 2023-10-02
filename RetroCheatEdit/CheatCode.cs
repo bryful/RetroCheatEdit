@@ -35,6 +35,13 @@ namespace RetroCheatEdit
 		{
 			m_Codes.Add (s);
 		}
+		public int CodeCount
+		{
+			get
+			{
+				return m_Codes.Count;
+			}
+		}
 		public string Code
 		{
 			get { return string.Join("\r\n", m_Codes); }
@@ -186,6 +193,22 @@ namespace RetroCheatEdit
                 }
 				ret += "\r\n";
             }
+			return ret;
+		}
+		public string Snes9xCode()
+		{
+			string ret = "cheat";
+			ret += $"  name:{m_desc}\r\n";
+			if (m_Codes.Count > 0)
+			{
+				ret += $"  code:{m_Codes[0]}\r\n";
+			}
+			if (m_enabled)
+			{
+				ret += $"  enable\r\n";
+			}
+			ret += "\r\n";
+
 			return ret;
 		}
 	}

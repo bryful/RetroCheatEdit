@@ -164,6 +164,9 @@ namespace RetroCheatEdit
 					case CheatFileType.DraStic:
 						ret += "[DraStic] ";
 						break;
+					case CheatFileType.Snes9x:
+						ret += "[Snes9x] ";
+						break;
 				}
 				ret += $"{Path.GetFileName(m_FileName)} : {m_psp_id}/{m_psp_title}";
 				return ret;
@@ -318,7 +321,17 @@ namespace RetroCheatEdit
 			idx = s.IndexOf("cheat");
 			if(idx== 0)
 			{
-				return CheatFileType.RetroArch;
+				char c = s[idx + 1];
+				if ((c>='0')&&(c<='9'))
+				{
+					return CheatFileType.RetroArch;
+				}
+				idx = s.IndexOf('\n');
+				string ss = s.Substring(0,idx).Trim();
+				if (ss== "cheat")
+				{
+					return CheatFileType.Snes9x;
+				}
 			}
 			idx = s.IndexOf("_S ");
 			if (idx == 0)
@@ -368,6 +381,9 @@ namespace RetroCheatEdit
 						break;
 					case CheatFileType.DraStic:
 						ret = FromDraStic(s);
+						break;
+					case CheatFileType.Snes9x:
+						ret = FromSnes9x(s);
 						break;
 				}
 			}
@@ -634,6 +650,62 @@ namespace RetroCheatEdit
 			}
 			return ret;
 		}
+		
+		public bool FromSnes9x(string s)
+		{
+			bool ret = false;
+			try
+			{
+				string[] sa = s.Split('\n');
+				List<CheatCode> ccs = new List<CheatCode>();
+				if (sa.Length > 0)
+				{
+					CheatCode? cc = null;
+					foreach (string line in sa)
+					{
+						string line2 = line.Trim();
+						if (line2 == "cheat")
+						{
+							if (cc != null) ccs.Add(cc);
+							cc = new CheatCode("");
+						}
+						else if (line2 == "enable")
+						{
+							if (cc != null) cc.SetEnabled(true);
+						}
+						else if (line2.IndexOf("name:") == 0)
+						{
+							if (cc != null)
+							{
+								cc.SetDesc(line2.Substring(5).Trim());
+							}
+						}
+						else if (line2.IndexOf("code:") == 0)
+						{
+							if (cc != null)
+							{
+								if (cc.CodeCount == 0)
+								{
+									cc.AddCode(line2.Substring(5).Trim());
+								}
+							}
+						}
+					}
+					if (cc != null) ccs.Add(cc);
+				}
+				string[] descs = new string[ccs.Count];
+				for (int i = 0; i < ccs.Count; i++) { descs[i] = ccs[i].Desc; }
+				this.Items.AddRange(descs);
+				m_Items.AddRange(ccs);
+				m_CfType = CheatFileType.Snes9x;
+				ret = true;
+			}
+			catch
+			{
+				ret = false;
+			}
+			return ret;
+		}
 		// *****************************************************************
 		public bool Save(string p)
 		{
@@ -643,6 +715,10 @@ namespace RetroCheatEdit
 					return SaveRetroArch(p);
 				case CheatFileType.John:
 					return SaveJohn(p);
+				case CheatFileType.ppsspp:
+					return SavePpsspp(p);
+				case CheatFileType.DraStic:
+					return SaveDraStic(p);
 				default:
 					return false;
 			}
@@ -743,7 +819,7 @@ namespace RetroCheatEdit
 			return ret;
 		}
 		// *****************************************************************
-		public bool SaveDrasTic(string p)
+		public bool SaveDraStic(string p)
 		{
 			bool ret = false;
 			string data = "";
@@ -760,6 +836,36 @@ namespace RetroCheatEdit
 				File.WriteAllText(p, data);
 				ret = File.Exists(p);
 				m_CfType = CheatFileType.DraStic;
+			}
+			catch
+			{
+				m_CfType = CheatFileType.None;
+				ret = false;
+			}
+			if (ret)
+			{
+				m_FileName = p;
+			}
+			return ret;
+		}
+		// *****************************************************************
+		public bool SaveSnes9x(string p)
+		{
+			bool ret = false;
+			string data = "";
+			if (m_Items.Count > 0)
+			{
+				foreach (CheatCode item in m_Items)
+				{
+					data += item.Snes9xCode();
+				}
+			}
+			try
+			{
+				if (File.Exists(p)) { File.Delete(p); }
+				File.WriteAllText(p, data);
+				ret = File.Exists(p);
+				m_CfType = CheatFileType.Snes9x;
 			}
 			catch
 			{
@@ -865,6 +971,7 @@ namespace RetroCheatEdit
 		John,
 		RetroArch,
 		ppsspp,
-		DraStic
+		DraStic,
+		Snes9x
 	}
 }

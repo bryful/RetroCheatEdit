@@ -16,4 +16,11 @@
     <Content Include="appicon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ClearScript" Version="7.4.3" />
+    <PackageReference Include="RoslynPad.Editor.Windows" Version="4.4.0" />
+    <PackageReference Include="RoslynPad.Roslyn" Version="4.4.0" />
+    <PackageReference Include="RoslynPad.Roslyn.Windows" Version="4.4.0" />
+  </ItemGroup>
+
 </Project>

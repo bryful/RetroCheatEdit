@@ -50,6 +50,7 @@
 			cbEnabled = new CheckBox();
 			tbCode = new TextBox();
 			tbDesc = new TextBox();
+			scriptEditorMenu = new ToolStripMenuItem();
 			menuStrip1.SuspendLayout();
 			SuspendLayout();
 			// 
@@ -71,85 +72,85 @@
 			// 
 			fileMenu.BackColor = SystemColors.Control;
 			fileMenu.DropDownItems.AddRange(new ToolStripItem[] { loadMenu, saveMenu, saveJohnMenu, saveRetroArchMenu, savePpssppMenu, saveDraSticMenu, quitMenu });
-			fileMenu.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			fileMenu.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			fileMenu.ForeColor = SystemColors.ControlText;
 			fileMenu.Name = "fileMenu";
-			fileMenu.Size = new Size(47, 20);
+			fileMenu.Size = new Size(39, 20);
 			fileMenu.Text = "File";
 			// 
 			// loadMenu
 			// 
-			loadMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			loadMenu.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			loadMenu.Name = "loadMenu";
 			loadMenu.ShortcutKeys = Keys.Control | Keys.O;
-			loadMenu.Size = new Size(204, 22);
+			loadMenu.Size = new Size(206, 22);
 			loadMenu.Text = "Load";
 			// 
 			// saveMenu
 			// 
-			saveMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			saveMenu.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			saveMenu.Name = "saveMenu";
 			saveMenu.ShortcutKeys = Keys.Control | Keys.S;
-			saveMenu.Size = new Size(204, 22);
+			saveMenu.Size = new Size(206, 22);
 			saveMenu.Text = "Save";
 			// 
 			// saveJohnMenu
 			// 
-			saveJohnMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			saveJohnMenu.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			saveJohnMenu.Name = "saveJohnMenu";
 			saveJohnMenu.ShortcutKeys = Keys.Control | Keys.J;
-			saveJohnMenu.Size = new Size(204, 22);
+			saveJohnMenu.Size = new Size(206, 22);
 			saveJohnMenu.Text = "SaveJohn";
 			// 
 			// saveRetroArchMenu
 			// 
-			saveRetroArchMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			saveRetroArchMenu.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			saveRetroArchMenu.Name = "saveRetroArchMenu";
 			saveRetroArchMenu.ShortcutKeys = Keys.Control | Keys.R;
-			saveRetroArchMenu.Size = new Size(204, 22);
+			saveRetroArchMenu.Size = new Size(206, 22);
 			saveRetroArchMenu.Text = "SaveRetroArch";
 			// 
 			// savePpssppMenu
 			// 
-			savePpssppMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			savePpssppMenu.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			savePpssppMenu.Name = "savePpssppMenu";
-			savePpssppMenu.Size = new Size(204, 22);
+			savePpssppMenu.Size = new Size(206, 22);
 			savePpssppMenu.Text = "SavePpsspp";
 			// 
 			// saveDraSticMenu
 			// 
-			saveDraSticMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			saveDraSticMenu.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			saveDraSticMenu.Name = "saveDraSticMenu";
-			saveDraSticMenu.Size = new Size(204, 22);
+			saveDraSticMenu.Size = new Size(206, 22);
 			saveDraSticMenu.Text = "SaveDraStic";
 			// 
 			// quitMenu
 			// 
-			quitMenu.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			quitMenu.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			quitMenu.Name = "quitMenu";
-			quitMenu.Size = new Size(204, 22);
+			quitMenu.Size = new Size(206, 22);
 			quitMenu.Text = "Quit";
 			// 
 			// toolMenu
 			// 
-			toolMenu.DropDownItems.AddRange(new ToolStripItem[] { calcFormMenu, pspIdTitleFormMenu });
-			toolMenu.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			toolMenu.DropDownItems.AddRange(new ToolStripItem[] { calcFormMenu, pspIdTitleFormMenu, scriptEditorMenu });
+			toolMenu.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
 			toolMenu.Name = "toolMenu";
-			toolMenu.Size = new Size(47, 20);
+			toolMenu.Size = new Size(41, 20);
 			toolMenu.Text = "Tool";
 			// 
 			// calcFormMenu
 			// 
-			calcFormMenu.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			calcFormMenu.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
 			calcFormMenu.Name = "calcFormMenu";
-			calcFormMenu.Size = new Size(172, 22);
+			calcFormMenu.Size = new Size(180, 22);
 			calcFormMenu.Text = "CalcForm";
 			// 
 			// pspIdTitleFormMenu
 			// 
-			pspIdTitleFormMenu.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			pspIdTitleFormMenu.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
 			pspIdTitleFormMenu.Name = "pspIdTitleFormMenu";
-			pspIdTitleFormMenu.Size = new Size(172, 22);
+			pspIdTitleFormMenu.Size = new Size(180, 22);
 			pspIdTitleFormMenu.Text = "PspIdTitleForm";
 			// 
 			// ccList1
@@ -264,6 +265,12 @@
 			tbDesc.Size = new Size(230, 26);
 			tbDesc.TabIndex = 3;
 			// 
+			// scriptEditorToolStripMenuItem
+			// 
+			scriptEditorMenu.Name = "scriptEditorToolStripMenuItem";
+			scriptEditorMenu.Size = new Size(180, 22);
+			scriptEditorMenu.Text = "ScriptEditor";
+			// 
 			// MainForm
 			// 
 			AllowDrop = true;
@@ -314,5 +321,6 @@
 		private ToolStripMenuItem savePpssppMenu;
 		private ToolStripMenuItem pspIdTitleFormMenu;
 		private ToolStripMenuItem saveDraSticMenu;
+		private ToolStripMenuItem scriptEditorMenu;
 	}
 }

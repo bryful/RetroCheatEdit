@@ -3,6 +3,7 @@ namespace RetroCheatEdit
 	public partial class MainForm : BaseForm
 	{
 		public List<CalcForm> m_forms = new List<CalcForm>();
+		public List<ScriptEditor> m_Sforms = new List<ScriptEditor>();
 		// ********************************************************************
 		private F_Pipe m_Server = new F_Pipe();
 		public void StartServer(string pipename)
@@ -47,6 +48,7 @@ namespace RetroCheatEdit
 				ccList1.EditPspIsTitle();
 				this.Text = ccList1.Title;
 			};
+			scriptEditorMenu.Click += (sender, e) => { NewScriptEditor(); };
 			Command(Environment.GetCommandLineArgs().Skip(1).ToArray(), PIPECALL.StartupExec);
 		}
 		// **********************************************************
@@ -153,6 +155,14 @@ namespace RetroCheatEdit
 			CalcForm cf = new CalcForm();
 			cf.Owner = this;
 			m_forms.Add(cf);
+			cf.Show();
+		}
+		// **********************************************************
+		public void NewScriptEditor()
+		{
+			ScriptEditor cf = new ScriptEditor();
+			cf.Owner = this;
+			m_Sforms.Add(cf);
 			cf.Show();
 		}
 		public bool LoadChtFile()
@@ -353,7 +363,7 @@ namespace RetroCheatEdit
 
 				if (dlg.ShowDialog() == DialogResult.OK)
 				{
-					ret = ccList1.SaveDrasTic(dlg.FileName);
+					ret = ccList1.SaveDraStic(dlg.FileName);
 					if (ret)
 					{
 						this.Text = ccList1.Title;
