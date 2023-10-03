@@ -33,6 +33,17 @@ namespace RetroCheatEdit
 		public ScriptEditor()
 		{
 			InitializeComponent();
+
+			sampleSnes1Menu.Click += (sender, e) =>
+			{
+				roslynEdit1.Text = Properties.Resources.sampleCode1;
+
+			};
+			wizCharMenu.Click += (sender, e) =>
+			{
+				roslynEdit1.Text = Properties.Resources.SampleCode2;
+
+			};
 		}
 		public CustomRoslynHost? ScriptHost = null;
 		public void ScriptExecute(string code)

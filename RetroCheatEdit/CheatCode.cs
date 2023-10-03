@@ -20,6 +20,16 @@ namespace RetroCheatEdit
 		public bool Enabled { get { return m_enabled; } }
 		public void SetEnabled(bool b) { m_enabled = b; }
 		private List<string> m_Codes = new List<string>();
+		private void ChkCodes()
+		{
+			if(m_Codes.Count>0)
+			{
+				for(int i=0; i<m_Codes.Count;i++)
+				{
+					m_Codes[i] = m_Codes[i].Trim(); ;
+				}
+			}
+		}
 		public void SetCodes(string[] sa)
 		{
 			m_Codes.Clear();
@@ -27,13 +37,14 @@ namespace RetroCheatEdit
 			{
 				if (s != "")
 				{
-					m_Codes.Add(s);
+					m_Codes.Add(s.Trim());
 				}
 			}
 		}
 		public void AddCode(string s)
 		{
-			m_Codes.Add (s);
+
+			m_Codes.Add (s.Trim());
 		}
 		public int CodeCount
 		{
@@ -54,7 +65,7 @@ namespace RetroCheatEdit
 					string[] sa = value.Split("\r\n");
 					foreach(string s in sa)
 					{
-						m_Codes.Add(s);
+						m_Codes.Add(s.Trim());
 					}
 				}
 			}
@@ -72,7 +83,7 @@ namespace RetroCheatEdit
 			m_Codes.Clear();
 			foreach(string s in cc.m_Codes)
 			{
-				m_Codes.Add(s);
+				m_Codes.Add(s.Trim());
 			}
 			m_desc = cc.m_desc;
 			m_enabled = cc.m_enabled;
@@ -145,6 +156,7 @@ namespace RetroCheatEdit
 					ret += "disabled=\"true\" ";
 				}
 				ret += "code=\"";
+				ChkCodes();
 				ret += string.Join("&#10;", m_Codes);
 				ret += "\" name=\"" + m_desc + "\"";
 
@@ -159,6 +171,8 @@ namespace RetroCheatEdit
 			string ret = "";
 			string e = "false";
 			if (m_enabled == true) e = "true";
+			ChkCodes();
+
 			ret += $"cheat{idx}_desc = \"{m_desc}\"\n";
 			ret += $"cheat{idx}_code = \"{string.Join("+",m_Codes)}\"\n";
 			ret += $"cheat{idx}_enable = \"{e}\"\n";
@@ -174,7 +188,7 @@ namespace RetroCheatEdit
 			{
 				foreach (string s in m_Codes)
 				{
-					ret += "_L " + s + "\r\n";
+					ret += "_L " + s.Trim() + "\r\n";
 				}
 			}
 			return ret;
@@ -189,7 +203,7 @@ namespace RetroCheatEdit
 			{
                 foreach (string c in m_Codes)
                 {
-					ret += $"{c}\r\n";
+					ret += $"{c.Trim()}\r\n";
                 }
 				ret += "\r\n";
             }
@@ -201,7 +215,7 @@ namespace RetroCheatEdit
 			ret += $"  name:{m_desc}\r\n";
 			if (m_Codes.Count > 0)
 			{
-				ret += $"  code:{m_Codes[0]}\r\n";
+				ret += $"  code:{m_Codes[0].Trim()}\r\n";
 			}
 			if (m_enabled)
 			{

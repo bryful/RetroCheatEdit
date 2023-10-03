@@ -32,9 +32,11 @@
 			roslynEdit1 = new RoslynEdit();
 			toolStrip1 = new ToolStrip();
 			btnV8Execute = new ToolStripButton();
-			btnFont = new ToolStripButton();
+			toolStripDropDownButton1 = new ToolStripDropDownButton();
+			sampleSnes1Menu = new ToolStripMenuItem();
 			textBox1 = new TextBox();
 			splitContainer1 = new SplitContainer();
+			wizCharMenu = new ToolStripMenuItem();
 			toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
 			splitContainer1.Panel1.SuspendLayout();
@@ -46,7 +48,7 @@
 			// 
 			roslynEdit1.BackColor = Color.Gray;
 			roslynEdit1.Dock = DockStyle.Fill;
-			roslynEdit1.Font = new Font("源ノ角ゴシック Code JP R", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			roslynEdit1.Font = new Font("ＭＳ ゴシック", 12F, FontStyle.Regular, GraphicsUnit.Point);
 			roslynEdit1.Location = new Point(0, 0);
 			roslynEdit1.Name = "roslynEdit1";
 			roslynEdit1.Size = new Size(742, 342);
@@ -57,7 +59,7 @@
 			toolStrip1.Anchor = AnchorStyles.None;
 			toolStrip1.AutoSize = false;
 			toolStrip1.Dock = DockStyle.None;
-			toolStrip1.Items.AddRange(new ToolStripItem[] { btnV8Execute, btnFont });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { btnV8Execute, toolStripDropDownButton1 });
 			toolStrip1.Location = new Point(0, 22);
 			toolStrip1.Name = "toolStrip1";
 			toolStrip1.Size = new Size(766, 25);
@@ -80,26 +82,35 @@
 			btnV8Execute.Text = "Execute";
 			btnV8Execute.Click += btnV8Execute_Click;
 			// 
-			// btnFont
+			// toolStripDropDownButton1
 			// 
-			btnFont.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			btnFont.ForeColor = Color.Black;
-			btnFont.Image = (Image)resources.GetObject("btnFont.Image");
-			btnFont.ImageTransparentColor = Color.Magenta;
-			btnFont.Name = "btnFont";
-			btnFont.Size = new Size(35, 22);
-			btnFont.Text = "Font";
+			toolStripDropDownButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
+			toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { sampleSnes1Menu, wizCharMenu });
+			toolStripDropDownButton1.ForeColor = Color.FromArgb(10, 10, 10);
+			toolStripDropDownButton1.Image = (Image)resources.GetObject("toolStripDropDownButton1.Image");
+			toolStripDropDownButton1.ImageTransparentColor = Color.Magenta;
+			toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+			toolStripDropDownButton1.ShowDropDownArrow = false;
+			toolStripDropDownButton1.Size = new Size(76, 22);
+			toolStripDropDownButton1.Text = "SampleCode";
+			// 
+			// sampleSnes1Menu
+			// 
+			sampleSnes1Menu.Name = "sampleSnes1Menu";
+			sampleSnes1Menu.Size = new Size(180, 22);
+			sampleSnes1Menu.Text = "SNES1";
 			// 
 			// textBox1
 			// 
 			textBox1.BackColor = Color.FromArgb(230, 230, 230);
 			textBox1.BorderStyle = BorderStyle.FixedSingle;
 			textBox1.Dock = DockStyle.Fill;
-			textBox1.Font = new Font("ＭＳ ゴシック", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			textBox1.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			textBox1.ForeColor = Color.FromArgb(60, 60, 60);
 			textBox1.Location = new Point(0, 0);
 			textBox1.Multiline = true;
 			textBox1.Name = "textBox1";
+			textBox1.ReadOnly = true;
 			textBox1.ScrollBars = ScrollBars.Both;
 			textBox1.Size = new Size(742, 182);
 			textBox1.TabIndex = 3;
@@ -122,6 +133,12 @@
 			splitContainer1.SplitterDistance = 342;
 			splitContainer1.TabIndex = 4;
 			// 
+			// wizCharToolStripMenuItem
+			// 
+			wizCharMenu.Name = "wizCharToolStripMenuItem";
+			wizCharMenu.Size = new Size(180, 22);
+			wizCharMenu.Text = "WizChar";
+			// 
 			// ScriptEditor
 			// 
 			ClientSize = new Size(766, 590);
@@ -134,6 +151,7 @@
 			Name = "ScriptEditor";
 			ShowIcon = false;
 			ShowInTaskbar = false;
+			StartPosition = FormStartPosition.CenterScreen;
 			Text = "ScriptEditor";
 			toolStrip1.ResumeLayout(false);
 			toolStrip1.PerformLayout();
@@ -149,9 +167,11 @@
 
 		private RoslynEdit roslynEdit1;
 		private ToolStrip toolStrip1;
-		private ToolStripButton btnFont;
 		private ToolStripButton btnV8Execute;
 		private TextBox textBox1;
 		private SplitContainer splitContainer1;
+		private ToolStripDropDownButton toolStripDropDownButton1;
+		private ToolStripMenuItem sampleSnes1Menu;
+		private ToolStripMenuItem wizCharMenu;
 	}
 }
