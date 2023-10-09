@@ -73,6 +73,14 @@ namespace RetroCheatEdit
 		{
 			return Convert.ToInt32(s,16);
 		}
+		public string IntToHex4(int v)
+		{
+			return $"{v:x4}";
+		}
+		public string IntToHex6(int v)
+		{
+			return $"{v:x6}";
+		}
 	}
 }
 

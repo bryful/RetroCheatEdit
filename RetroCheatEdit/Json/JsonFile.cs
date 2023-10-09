@@ -82,7 +82,6 @@ namespace RetroCheatEdit
 			}
 			return ret;
 		}
-
 		// ****************************************************
 		public bool Load(string p)
 		{

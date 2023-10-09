@@ -43,6 +43,7 @@ namespace RetroCheatEdit
 			saveRetroArchMenu.Click += (sender, e) => { SaveRetroArchFile(); };
 			savePpssppMenu.Click += (sender, e) => { SavePpssppFile(); };
 			saveDraSticMenu.Click += (sender, e) => { SaveDraSticFile(); };
+			saveSnes9xMenu.Click += (sender, e) => { SaveSnes9xFile(); };
 			pspIdTitleFormMenu.Click += (sender, e) =>
 			{
 				ccList1.EditPspIsTitle();
@@ -364,6 +365,37 @@ namespace RetroCheatEdit
 				if (dlg.ShowDialog() == DialogResult.OK)
 				{
 					ret = ccList1.SaveDraStic(dlg.FileName);
+					if (ret)
+					{
+						this.Text = ccList1.Title;
+					}
+					else
+					{
+						this.Text = "RetroCheatEdit";
+					}
+				}
+			}
+			return ret;
+		}
+		public bool SaveSnes9xFile()
+		{
+			bool ret = false;
+			using (SaveFileDialog dlg = new SaveFileDialog())
+			{
+				if (ccList1.FileName != "")
+				{
+					dlg.InitialDirectory = Path.GetDirectoryName(ccList1.FileName);
+					dlg.FileName = Path.ChangeExtension(
+						Path.GetFileName(ccList1.FileName),
+						".cht");
+				}
+				dlg.Title = "Export Snes9x cheat File";
+				dlg.DefaultExt = ".cht";
+				dlg.Filter = "*.cht|*.cht|*.*|*.*";
+
+				if (dlg.ShowDialog() == DialogResult.OK)
+				{
+					ret = ccList1.SaveSnes9x(dlg.FileName);
 					if (ret)
 					{
 						this.Text = ccList1.Title;

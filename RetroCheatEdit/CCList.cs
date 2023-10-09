@@ -321,11 +321,15 @@ namespace RetroCheatEdit
 			idx = s.IndexOf("cheat");
 			if(idx== 0)
 			{
-				char c = s[idx + 1];
+				char c = s[5];
 				if ((c>='0')&&(c<='9'))
 				{
 					return CheatFileType.RetroArch;
+				}else if (c == 's')
+				{
+					return CheatFileType.RetroArch;
 				}
+
 				idx = s.IndexOf('\n');
 				string ss = s.Substring(0,idx).Trim();
 				if (ss== "cheat")

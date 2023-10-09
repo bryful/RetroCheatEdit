@@ -41,6 +41,7 @@
 			toolMenu = new ToolStripMenuItem();
 			calcFormMenu = new ToolStripMenuItem();
 			pspIdTitleFormMenu = new ToolStripMenuItem();
+			scriptEditorMenu = new ToolStripMenuItem();
 			ccList1 = new CCList();
 			btnAdd = new Button();
 			btnDell = new Button();
@@ -50,7 +51,7 @@
 			cbEnabled = new CheckBox();
 			tbCode = new TextBox();
 			tbDesc = new TextBox();
-			scriptEditorMenu = new ToolStripMenuItem();
+			saveSnes9xMenu = new ToolStripMenuItem();
 			menuStrip1.SuspendLayout();
 			SuspendLayout();
 			// 
@@ -71,7 +72,7 @@
 			// fileMenu
 			// 
 			fileMenu.BackColor = SystemColors.Control;
-			fileMenu.DropDownItems.AddRange(new ToolStripItem[] { loadMenu, saveMenu, saveJohnMenu, saveRetroArchMenu, savePpssppMenu, saveDraSticMenu, quitMenu });
+			fileMenu.DropDownItems.AddRange(new ToolStripItem[] { loadMenu, saveMenu, saveJohnMenu, saveRetroArchMenu, savePpssppMenu, saveDraSticMenu, saveSnes9xMenu, quitMenu });
 			fileMenu.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
 			fileMenu.ForeColor = SystemColors.ControlText;
 			fileMenu.Name = "fileMenu";
@@ -143,15 +144,21 @@
 			// 
 			calcFormMenu.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
 			calcFormMenu.Name = "calcFormMenu";
-			calcFormMenu.Size = new Size(180, 22);
+			calcFormMenu.Size = new Size(152, 22);
 			calcFormMenu.Text = "CalcForm";
 			// 
 			// pspIdTitleFormMenu
 			// 
 			pspIdTitleFormMenu.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
 			pspIdTitleFormMenu.Name = "pspIdTitleFormMenu";
-			pspIdTitleFormMenu.Size = new Size(180, 22);
+			pspIdTitleFormMenu.Size = new Size(152, 22);
 			pspIdTitleFormMenu.Text = "PspIdTitleForm";
+			// 
+			// scriptEditorMenu
+			// 
+			scriptEditorMenu.Name = "scriptEditorMenu";
+			scriptEditorMenu.Size = new Size(152, 22);
+			scriptEditorMenu.Text = "ScriptEditor";
 			// 
 			// ccList1
 			// 
@@ -265,11 +272,11 @@
 			tbDesc.Size = new Size(230, 26);
 			tbDesc.TabIndex = 3;
 			// 
-			// scriptEditorToolStripMenuItem
+			// saveSnes9xMenu
 			// 
-			scriptEditorMenu.Name = "scriptEditorToolStripMenuItem";
-			scriptEditorMenu.Size = new Size(180, 22);
-			scriptEditorMenu.Text = "ScriptEditor";
+			saveSnes9xMenu.Name = "saveSnes9xMenu";
+			saveSnes9xMenu.Size = new Size(206, 22);
+			saveSnes9xMenu.Text = "SaveSnes9x";
 			// 
 			// MainForm
 			// 
@@ -322,5 +329,6 @@
 		private ToolStripMenuItem pspIdTitleFormMenu;
 		private ToolStripMenuItem saveDraSticMenu;
 		private ToolStripMenuItem scriptEditorMenu;
+		private ToolStripMenuItem saveSnes9xMenu;
 	}
 }

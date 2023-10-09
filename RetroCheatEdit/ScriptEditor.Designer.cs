@@ -34,9 +34,10 @@
 			btnV8Execute = new ToolStripButton();
 			toolStripDropDownButton1 = new ToolStripDropDownButton();
 			sampleSnes1Menu = new ToolStripMenuItem();
+			wizCharMenu = new ToolStripMenuItem();
+			bcMenu = new ToolStripDropDownButton();
 			textBox1 = new TextBox();
 			splitContainer1 = new SplitContainer();
-			wizCharMenu = new ToolStripMenuItem();
 			toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
 			splitContainer1.Panel1.SuspendLayout();
@@ -59,7 +60,7 @@
 			toolStrip1.Anchor = AnchorStyles.None;
 			toolStrip1.AutoSize = false;
 			toolStrip1.Dock = DockStyle.None;
-			toolStrip1.Items.AddRange(new ToolStripItem[] { btnV8Execute, toolStripDropDownButton1 });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { btnV8Execute, toolStripDropDownButton1, bcMenu });
 			toolStrip1.Location = new Point(0, 22);
 			toolStrip1.Name = "toolStrip1";
 			toolStrip1.Size = new Size(766, 25);
@@ -97,8 +98,24 @@
 			// sampleSnes1Menu
 			// 
 			sampleSnes1Menu.Name = "sampleSnes1Menu";
-			sampleSnes1Menu.Size = new Size(180, 22);
+			sampleSnes1Menu.Size = new Size(117, 22);
 			sampleSnes1Menu.Text = "SNES1";
+			// 
+			// wizCharMenu
+			// 
+			wizCharMenu.Name = "wizCharMenu";
+			wizCharMenu.Size = new Size(117, 22);
+			wizCharMenu.Text = "WizChar";
+			// 
+			// bcMenu
+			// 
+			bcMenu.DisplayStyle = ToolStripItemDisplayStyle.Text;
+			bcMenu.ForeColor = Color.FromArgb(23, 23, 23);
+			bcMenu.Image = (Image)resources.GetObject("bcMenu.Image");
+			bcMenu.ImageTransparentColor = Color.Magenta;
+			bcMenu.Name = "bcMenu";
+			bcMenu.Size = new Size(86, 22);
+			bcMenu.Text = "BackupCode";
 			// 
 			// textBox1
 			// 
@@ -132,12 +149,6 @@
 			splitContainer1.Size = new Size(742, 528);
 			splitContainer1.SplitterDistance = 342;
 			splitContainer1.TabIndex = 4;
-			// 
-			// wizCharToolStripMenuItem
-			// 
-			wizCharMenu.Name = "wizCharToolStripMenuItem";
-			wizCharMenu.Size = new Size(180, 22);
-			wizCharMenu.Text = "WizChar";
 			// 
 			// ScriptEditor
 			// 
@@ -173,5 +184,6 @@
 		private ToolStripDropDownButton toolStripDropDownButton1;
 		private ToolStripMenuItem sampleSnes1Menu;
 		private ToolStripMenuItem wizCharMenu;
+		private ToolStripDropDownButton bcMenu;
 	}
 }
